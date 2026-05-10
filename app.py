@@ -65,7 +65,10 @@ if prompt := st.chat_input("Ask a React question..."):
     with st.chat_message("user"):
         st.markdown(prompt)
     
+    # 1. Retrieve the actual document objects
     docs = retriever.invoke(prompt)
+    
+    # 2. Run the chain to get the text answer
     response = rag_chain.invoke({
         "context": docs,
         "chat_history": st.session_state.chat_history,
@@ -75,5 +78,14 @@ if prompt := st.chat_input("Ask a React question..."):
     with st.chat_message("assistant"):
         st.markdown(response)
     
+    # 3. Display the sources in an expander
+        with st.expander("View Sources"):
+            for i, doc in enumerate(docs):
+                page_num = doc.metadata.get("page", "Unknown")
+                # Showing a small snippet of the source text
+                st.write(f"**Source {i+1} (Page {page_num + 1}):**")
+                st.caption(f"{doc.page_content[:200]}...")
+
+    # Save History
     st.session_state.chat_history.append(("human", prompt))
     st.session_state.chat_history.append(("ai", response))
