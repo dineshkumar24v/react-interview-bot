@@ -11,7 +11,7 @@ A specialized AI chatbot that answers React interview questions using a local PD
 
 ## 🛠️ Tech Stack
 
-- **AI**: Google Gemini 1.5 Flash
+- **AI**: Google Gemini 2.5 Flash
 - **Logic**: LangChain (LCEL)
 - **Vector DB**: ChromaDB
 - **UI**: Streamlit
