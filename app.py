@@ -15,6 +15,10 @@ load_dotenv()
 
 st.set_page_config(page_title="React Interview Bot", layout="centered")
 st.title("🤖 React Expert Interview Bot")
+with st.sidebar:
+    st.subheader("About this Bot")
+    st.write("This is a RAG-powered interviewer grounded strictly on standard React documentation.")
+    st.info("💡 **Try asking:** \n- What are React Hooks?\n- Explain the Virtual DOM.\n- Show me the class version of that.")
 
 @st.cache_resource
 def init_bot():
